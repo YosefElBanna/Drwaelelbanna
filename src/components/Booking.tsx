@@ -111,7 +111,7 @@ export default function Booking() {
             if (allowedDays.includes(day) && !disabledDates.includes(dateStr)) {
                 dates.push(dateStr);
             }
-            if (dates.length >= 7) break; // Get next 7 available dates
+            if (dates.length >= 6) break; // Get next 6 available dates
         }
         return dates;
     };
@@ -232,12 +232,26 @@ export default function Booking() {
         <>
             <section id="booking" className="py-12 md:py-20" style={{ background: "#FFFFFF" }}>
             <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-                <div className="text-center mb-8 md:mb-12">
-                    <h2 className="text-2xl md:text-4xl font-extrabold mb-3 md:mb-4" style={{ color: "#080F28" }}>احجز استشارتك الأونلاين</h2>
-                    <div className="w-16 md:w-24 h-1 mx-auto rounded-full mb-4 md:mb-6" style={{ background: "linear-gradient(90deg, #1447E6, #C9971F)" }} />
-                    <p className="text-sm md:text-lg" style={{ color: "#5A6A88" }}>
-                        اختر الموعد وادفع عبر الإنترنت — التأكيد فوري.
-                    </p>
+                <div className="text-center mb-8 md:mb-10">
+                    <h2 className="text-2xl md:text-3xl font-extrabold mb-3" style={{ color: "#080F28" }}>احجز استشارتك الأونلاين</h2>
+                    <div className="w-16 h-1 mx-auto rounded-full mb-8" style={{ background: "linear-gradient(90deg, #1447E6, #C9971F)" }} />
+                    
+                    {/* Progress Steps */}
+                    <div className="flex items-center justify-center max-w-sm mx-auto relative px-2">
+                        <div className="absolute top-1/2 left-8 right-8 h-0.5 bg-slate-200 -z-10 -translate-y-1/2" />
+                        {[
+                            { step: 1, label: "اليوم" },
+                            { step: 2, label: "الوقت" },
+                            { step: 3, label: "التأكيد" }
+                        ].map((s) => (
+                            <div key={s.step} className="flex-1 flex flex-col items-center gap-2 relative z-10">
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all duration-500 ${currentStep > s.step ? 'bg-[#1447E6] border-[#1447E6] text-white scale-110 shadow-md' : currentStep === s.step ? 'bg-white border-[#1447E6] text-[#1447E6] scale-110 shadow-sm' : 'bg-white border-slate-200 text-slate-400'}`}>
+                                    {currentStep > s.step ? <CheckCircle2 className="w-4 h-4" /> : s.step}
+                                </div>
+                                <span className={`text-xs font-bold transition-colors ${currentStep >= s.step ? 'text-[#080F28]' : 'text-slate-400'}`}>{s.label}</span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {success ? (
@@ -262,26 +276,18 @@ export default function Booking() {
                 ) : (
                     <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden border border-slate-100">
                         {/* Header */}
-                        <div className="text-white p-5 md:p-8" style={{ background: "linear-gradient(135deg, #1447E6 0%, #2556F5 100%)" }}>
-                            <div className="flex items-start justify-between">
-                                <div>
-                                    <h3 className="text-lg md:text-2xl font-bold mb-1">استشاره أونلاين</h3>
-                                    <p className="text-white/80 text-xs md:text-base">
-                                        <span className="hidden md:inline">استشارة أونلاين براحتك | دفع إلكتروني آمن</span>
-                                        <span className="md:hidden">حجز أونلاين | دفع إلكتروني</span>
+                        <div className="sticky top-0 z-20 text-white p-4 md:p-6 shadow-sm border-b border-white/10" style={{ background: "linear-gradient(135deg, #1447E6 0%, #2556F5 100%)" }}>
+                            <div className="flex items-center justify-between gap-4">
+                                <div className="text-right bg-white/10 px-4 py-2.5 rounded-xl backdrop-blur-sm border border-white/20 shadow-inner flex-1 max-w-[200px]">
+                                    <p className="text-[10px] md:text-xs text-white/80 mb-0.5">سعر الاستشارة</p>
+                                    <p className="text-base md:text-xl font-extrabold">{currentCountryInfo.price} <span className="text-xs font-normal">{currentCountryInfo.currency}</span></p>
+                                </div>
+                                <div className="text-left">
+                                    <h3 className="text-base md:text-xl font-bold mb-1">استشارة أونلاين</h3>
+                                    <p className="text-white/80 text-[10px] md:text-xs">
+                                        دفع إلكتروني آمن
                                     </p>
                                 </div>
-                                <div className="text-left bg-white/10 px-3 py-2 rounded-xl backdrop-blur-sm border border-white/20">
-                                    <p className="text-xs text-white/80 mb-0.5">سعر الاستشاره</p>
-                                    <p className="text-lg md:text-xl font-bold">{currentCountryInfo.price} {currentCountryInfo.currency}</p>
-                                </div>
-                            </div>
-                            
-                            {/* Mobile step indicator */}
-                            <div className="md:hidden flex items-center justify-center gap-2 mt-4 pt-4 border-t border-white/10">
-                                {[1, 2, 3].map(s => (
-                                    <div key={s} className={`w-2.5 h-2.5 rounded-full transition-all ${currentStep >= s ? 'bg-white scale-110 shadow-sm' : 'bg-white/40'}`} />
-                                ))}
                             </div>
                         </div>
 
@@ -302,20 +308,21 @@ export default function Booking() {
                                             <Loader2 className="w-6 h-6 animate-spin text-[#1447E6]" />
                                         </div>
                                     ) : (
-                                        <div className="grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-3 bg-slate-50 p-3 md:p-4 rounded-xl md:rounded-2xl border border-slate-200">
-                                        {upcomingDates.map((d) => {
+                                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 bg-slate-50 p-4 md:p-5 rounded-2xl border border-slate-200">
+                                        {upcomingDates.map((d, index) => {
                                             const parsedDate = parseISO(d);
                                             const dayName = format(parsedDate, 'EEEE', { locale: ar });
                                             const dateNum = format(parsedDate, 'd MMM', { locale: ar });
                                             const isSelected = date === d;
+                                            const isClosest = index === 0;
                                             return (
                                                 <button
                                                     key={d}
                                                     type="button"
                                                     onClick={() => { setDate(d); setSelectedSlot(""); setError(""); }}
-                                                    className={`flex flex-col items-center justify-center py-3 px-2 md:py-4 rounded-xl md:rounded-2xl font-bold transition-all border active:scale-95 ${isSelected
+                                                    className={`relative flex flex-col items-center justify-center py-4 px-2 rounded-2xl font-bold transition-all duration-300 border active:scale-95 ${isSelected
                                                         ? "text-white shadow-lg scale-105"
-                                                        : "bg-white border-slate-200"
+                                                        : "bg-white border-slate-200 hover:border-[#1447E6] hover:shadow-md hover:-translate-y-1"
                                                         }`}
                                                     style={{
                                                         background: isSelected ? "linear-gradient(135deg, #1447E6 0%, #2556F5 100%)" : "",
@@ -324,8 +331,13 @@ export default function Booking() {
                                                         color: isSelected ? "#FFFFFF" : "#080F28"
                                                     }}
                                                 >
-                                                    <span className={`text-[11px] md:text-sm mb-0.5 md:mb-1 ${isSelected ? 'text-white/90' : 'text-[#5A6A88]'}`}>{dayName}</span>
-                                                    <span className={`text-sm md:text-xl ${isSelected ? 'text-white' : 'text-[#080F28]'}`}>{dateNum}</span>
+                                                    {isClosest && !isSelected && (
+                                                        <span className="absolute -top-3 bg-emerald-100 text-emerald-700 border border-emerald-200 text-[10px] font-extrabold px-3 py-0.5 rounded-full z-10 shadow-sm">
+                                                            أقرب موعد
+                                                        </span>
+                                                    )}
+                                                    <span className={`text-xs md:text-sm mb-1 ${isSelected ? 'text-white/90' : 'text-[#5A6A88]'}`}>{dayName}</span>
+                                                    <span className={`text-base md:text-xl ${isSelected ? 'text-white' : 'text-[#080F28]'}`}>{dateNum}</span>
                                                 </button>
                                             );
                                         })}
@@ -354,11 +366,11 @@ export default function Booking() {
                                                     type="button"
                                                     disabled={isBooked}
                                                     onClick={() => { setSelectedSlot(slot); setError(""); }}
-                                                    className={`flex items-center justify-center gap-1.5 md:gap-2 py-2.5 md:py-3 px-2 md:px-4 rounded-xl font-bold transition-all border text-sm md:text-base active:scale-95 ${isBooked
+                                                    className={`flex items-center justify-center gap-1.5 md:gap-2 py-3 px-2 md:px-4 rounded-xl font-bold transition-all duration-300 border text-sm md:text-base active:scale-95 ${isBooked
                                                         ? "bg-slate-50 text-slate-400 border-slate-200 cursor-not-allowed opacity-60"
                                                         : isSelected
-                                                            ? "text-white shadow-lg"
-                                                            : "bg-white border-slate-200"
+                                                            ? "text-white shadow-lg scale-105"
+                                                            : "bg-white border-slate-200 hover:border-[#1447E6] hover:shadow-md hover:-translate-y-0.5"
                                                         }`}
                                                     style={{
                                                         background: isSelected && !isBooked ? "linear-gradient(135deg, #1447E6 0%, #2556F5 100%)" : "",
