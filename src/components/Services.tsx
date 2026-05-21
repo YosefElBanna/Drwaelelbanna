@@ -45,9 +45,6 @@ export default function Services() {
             <div className="container mx-auto px-5 md:px-6 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-10 md:mb-16">
-                    <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: "#1447E6" }}>
-                        خدماتنا
-                    </p>
                     <h2 className="text-2xl md:text-4xl font-extrabold mb-4" style={{ color: "#080F28" }}>
                         خدمات الباطنة والغدد الصماء
                     </h2>
