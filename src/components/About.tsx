@@ -108,7 +108,7 @@ export default function About() {
                             </div>
                             <div>
                                 <p className="font-extrabold text-base" style={{ color: "#080F28" }}>عاماً من الخبرة</p>
-                                <p className="text-sm mt-0.5" style={{ color: "#3D4D6B" }}>في الباطنة والغدد</p>
+                                <p className="text-sm mt-0.5" style={{ color: "#3D4D6B" }}>في الغدد الصماء والسكر</p>
                             </div>
                         </div>
                     </div>

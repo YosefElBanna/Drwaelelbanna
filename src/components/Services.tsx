@@ -46,7 +46,7 @@ export default function Services() {
                 {/* Header */}
                 <div className="text-center mb-10 md:mb-16">
                     <h2 className="text-2xl md:text-4xl font-extrabold mb-4" style={{ color: "#080F28" }}>
-                        خدمات الباطنة والغدد الصماء
+                        خدمات الغدد الصماء والسكر
                     </h2>
                     <div className="w-16 h-1 mx-auto rounded-full mb-4" style={{ background: "#1447E6" }} />
                     <p className="text-sm md:text-base max-w-xl mx-auto" style={{ color: "#5A6A88" }}>

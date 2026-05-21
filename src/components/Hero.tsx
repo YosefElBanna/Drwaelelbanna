@@ -80,8 +80,8 @@ export default function Hero() {
                     {/* Name & title */}
                     <div className="text-center mb-6">
                         <p className="text-sm font-bold mb-2 flex flex-col items-center gap-1" style={{ color: "#1447E6" }}>
-                            <span>د. وائل البنا</span>
-                            <span className="text-xs font-medium" style={{ color: "#3D4D6B" }}>استشاري باطنة وغدد صماء</span>
+                            <span className="font-bold text-sm" style={{ color: "#080F28" }}>د. وائل البنا</span>
+                            <span className="text-xs font-medium" style={{ color: "#3D4D6B" }}>استشاري الغدد الصماء والسكر</span>
                         </p>
                         <h1 className="text-3xl font-extrabold mb-4 leading-tight" style={{ color: "#080F28" }}>
                             خيارك الأمثل
@@ -144,13 +144,10 @@ export default function Hero() {
 
                         {/* Text */}
                         <div className="flex-1 text-right">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-8"
-                                style={{ background: "rgba(20,71,230,0.08)", color: "#1447E6", border: "1px solid rgba(20,71,230,0.15)" }}>
-                                <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#1447E6" }} />
-                                د. وائل البنا — استشاري باطنة وغدد صماء | استشارات أونلاين
-                            </div>
-
-                            <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight mb-6" style={{ color: "#080F28" }}>
+                            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 md:mb-6 leading-tight" style={{ color: "#080F28" }}>
+                                <span className="block text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ color: "#1447E6" }}>
+                                    د. وائل البنا — استشاري الغدد الصماء والسكر | استشارات أونلاين
+                                </span>
                                 خيارك الأمثل <br />
                                 <span className="text-3xl lg:text-5xl mt-2 inline-block" style={{ color: "#1447E6" }}>لحياة صحية ومتوازنة</span>
                             </h1>
@@ -194,7 +191,7 @@ export default function Hero() {
                                 </div>
                                 <div>
                                     <p className="font-extrabold text-sm" style={{ color: "#080F28" }}>استشاري متخصص</p>
-                                    <p className="text-xs mt-0.5" style={{ color: "#3D4D6B" }}>باطنة وغدد صماء وسكر</p>
+                                    <p className="text-xs mt-0.5" style={{ color: "#3D4D6B" }}>الغدد الصماء والسكر</p>
                                 </div>
                             </div>
                         </div>
