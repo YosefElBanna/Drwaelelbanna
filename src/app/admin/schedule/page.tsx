@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect } from 'react'
 import { Clock, Info, Calendar as CalendarIcon, Loader2, CheckCircle2, CalendarOff, ChevronRight, ChevronLeft } from 'lucide-react'
 import { startOfMonth, endOfMonth, eachDayOfInterval, format, addMonths, subMonths, isToday, isBefore, startOfDay, parseISO, getDay } from 'date-fns'
