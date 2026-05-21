@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@import "tailwindcss/utilities";
+
+@theme {
+  --font-sans: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+  --font-cairo: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Premium Navy + Royal Blue + Gold palette ── */
+  --color-brand-50:   #EEF3FF;
+  --color-brand-100:  #D8E5FF;
+  --color-brand-200:  #B3CAFF;
+  --color-brand-300:  #7FA4FF;
+  --color-brand-400:  #4B7BFF;
+  --color-brand-500:  #2556F5;
+  --color-brand-600:  #1447E6;
+  --color-brand-700:  #0F37C4;
+  --color-brand-800:  #0D2A9E;
+  --color-brand-900:  #0A1F7A;
+
+  --color-navy:       #080F28;
+  --color-navy-mid:   #0E1D40;
+  --color-navy-soft:  #162252;
+
+  --color-gold:       #C9971F;
+  --color-gold-light: #E8B84B;
+  --color-gold-pale:  #FDF3DC;
+
+  --color-surface:    #F4F7FF;
+  --color-white:      #FFFFFF;
+
+  --color-text-primary:   #080F28;
+  --color-text-secondary: #3D4D6B;
+  --color-text-muted:     #5A6A88; /* bumped from #6B7A99 for WCAG AA compliance */
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+:root {
+  --background: #F4F7FF;
+  --foreground: #080F28;
+}
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-cairo), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar hide ── */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Number direction fix: always LTR for mixed Arabic+number+symbol ── */
+.num-ltr {
+  display: inline-block;
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+
+/* ── Tap highlight ── */
+@media (max-width: 768px) {
+  button, a { -webkit-tap-highlight-color: transparent; }
+}
