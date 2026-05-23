@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -35,7 +37,9 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className="scroll-smooth">
       <body className={`${cairo.variable} antialiased`}>
+        <Navbar />
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );
