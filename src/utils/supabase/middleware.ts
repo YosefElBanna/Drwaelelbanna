@@ -2,6 +2,16 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function updateSession(request: NextRequest) {
+  const isAdminRoute = request.nextUrl.pathname.startsWith('/admin')
+  const isLoginRoute = request.nextUrl.pathname === '/admin/login'
+
+  // Early return for non-admin routes to prevent Vercel 504 timeouts on public pages
+  if (!isAdminRoute) {
+    return NextResponse.next({
+      request,
+    })
+  }
+
   let supabaseResponse = NextResponse.next({
     request,
   })
@@ -34,9 +44,6 @@ export async function updateSession(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser()
-
-  const isAdminRoute = request.nextUrl.pathname.startsWith('/admin')
-  const isLoginRoute = request.nextUrl.pathname === '/admin/login'
 
   if (isAdminRoute && !isLoginRoute && !user) {
     // no user, potentially respond by redirecting the user to the login page
