@@ -237,18 +237,18 @@ export default function Booking() {
                     <div className="w-16 h-1 mx-auto rounded-full mb-8" style={{ background: "linear-gradient(90deg, #1447E6, #C9971F)" }} />
                     
                     {/* Progress Steps */}
-                    <div className="flex items-center justify-center max-w-sm mx-auto relative px-2">
-                        <div className="absolute top-1/2 left-8 right-8 h-0.5 bg-slate-200 -z-10 -translate-y-1/2" />
+                    <div className="flex items-center justify-between max-w-sm mx-auto relative px-4 md:px-2">
+                        <div className="absolute top-1/2 left-8 right-8 h-[2px] bg-slate-200 -z-10 -translate-y-1/2 rounded-full" />
                         {[
                             { step: 1, label: "اليوم" },
                             { step: 2, label: "الوقت" },
                             { step: 3, label: "التأكيد" }
                         ].map((s) => (
-                            <div key={s.step} className="flex-1 flex flex-col items-center gap-2 relative z-10">
-                                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all duration-500 ${currentStep > s.step ? 'bg-[#1447E6] border-[#1447E6] text-white scale-110 shadow-md' : currentStep === s.step ? 'bg-white border-[#1447E6] text-[#1447E6] scale-110 shadow-sm' : 'bg-white border-slate-200 text-slate-400'}`}>
-                                    {currentStep > s.step ? <CheckCircle2 className="w-4 h-4" /> : s.step}
+                            <div key={s.step} className="flex flex-col items-center gap-1.5 md:gap-2 relative z-10 bg-white px-2">
+                                <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-xs md:text-sm font-bold border-2 transition-all duration-500 ${currentStep > s.step ? 'bg-[#1447E6] border-[#1447E6] text-white scale-110 shadow-md' : currentStep === s.step ? 'bg-white border-[#1447E6] text-[#1447E6] scale-110 shadow-sm' : 'bg-white border-slate-200 text-slate-400'}`}>
+                                    {currentStep > s.step ? <CheckCircle2 className="w-3.5 h-3.5 md:w-4 md:h-4" /> : s.step}
                                 </div>
-                                <span className={`text-xs font-bold transition-colors ${currentStep >= s.step ? 'text-[#080F28]' : 'text-slate-400'}`}>{s.label}</span>
+                                <span className={`text-[10px] md:text-xs font-bold transition-colors ${currentStep >= s.step ? 'text-[#080F28]' : 'text-slate-400'}`}>{s.label}</span>
                             </div>
                         ))}
                     </div>
@@ -314,11 +314,12 @@ export default function Booking() {
                                 </div>
                                 <div className="relative">
                                     {!settingsLoaded ? (
-                                        <div className="flex bg-slate-50 p-6 rounded-xl md:rounded-2xl border border-slate-200 justify-center items-center">
+                                        <div className="flex bg-slate-50/50 p-6 rounded-2xl border border-slate-100 justify-center items-center">
                                             <Loader2 className="w-6 h-6 animate-spin text-[#1447E6]" />
                                         </div>
                                     ) : (
-                                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 bg-slate-50 p-4 md:p-5 rounded-2xl border border-slate-200">
+                                        <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 md:grid md:grid-cols-3 md:gap-4 bg-slate-50/50 p-2 md:p-5 rounded-2xl border border-slate-100 pb-3 md:pb-5" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+
                                         {upcomingDates.map((d, index) => {
                                             const parsedDate = parseISO(d);
                                             const dayName = format(parsedDate, 'EEEE', { locale: ar });
@@ -330,10 +331,11 @@ export default function Booking() {
                                                     key={d}
                                                     type="button"
                                                     onClick={() => { setDate(d); setSelectedSlot(""); setError(""); }}
-                                                    className={`relative flex flex-col items-center justify-center py-4 px-2 rounded-2xl font-bold transition-all duration-300 border active:scale-95 ${isSelected
-                                                        ? "text-white shadow-lg scale-105"
-                                                        : "bg-white border-slate-200 hover:border-[#1447E6] hover:shadow-md hover:-translate-y-1"
+                                                    className={`relative min-w-[110px] md:min-w-0 snap-center flex flex-col items-center justify-center py-4 px-2 rounded-2xl font-bold transition-all duration-300 border active:scale-95 ${isSelected
+                                                        ? "text-white shadow-lg shadow-blue-500/30 scale-100 md:scale-105"
+                                                        : "bg-white border-slate-200 hover:border-[#1447E6] shadow-sm hover:shadow-md md:hover:-translate-y-1"
                                                         }`}
+
                                                     style={{
                                                         background: isSelected ? "linear-gradient(135deg, #1447E6 0%, #2556F5 100%)" : "",
                                                         borderColor: isSelected ? "#1447E6" : "",
@@ -376,11 +378,11 @@ export default function Booking() {
                                                     type="button"
                                                     disabled={isBooked}
                                                     onClick={() => { setSelectedSlot(slot); setError(""); }}
-                                                    className={`flex items-center justify-center gap-1.5 md:gap-2 py-3 px-2 md:px-4 rounded-xl font-bold transition-all duration-300 border text-sm md:text-base active:scale-95 ${isBooked
-                                                        ? "bg-slate-50 text-slate-400 border-slate-200 cursor-not-allowed opacity-60"
+                                                    className={`flex items-center justify-center gap-1.5 md:gap-2 py-3 px-2 md:px-4 rounded-xl font-bold transition-all duration-300 border text-xs md:text-base active:scale-95 ${isBooked
+                                                        ? "bg-slate-50/50 text-slate-300 border-slate-100 cursor-not-allowed"
                                                         : isSelected
-                                                            ? "text-white shadow-lg scale-105"
-                                                            : "bg-white border-slate-200 hover:border-[#1447E6] hover:shadow-md hover:-translate-y-0.5"
+                                                            ? "text-white shadow-lg shadow-blue-500/30 scale-100 md:scale-105"
+                                                            : "bg-white border-slate-200 hover:border-[#1447E6] shadow-sm hover:shadow-md md:hover:-translate-y-0.5"
                                                         }`}
                                                     style={{
                                                         background: isSelected && !isBooked ? "linear-gradient(135deg, #1447E6 0%, #2556F5 100%)" : "",
@@ -438,8 +440,8 @@ export default function Booking() {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting || !date || !selectedSlot}
-                                    className="w-full text-white font-bold text-sm md:text-lg py-3.5 md:py-4 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-6 md:mt-8 active:scale-[0.98]"
-                                    style={{ background: "linear-gradient(135deg, #1447E6 0%, #2556F5 100%)", boxShadow: "0 8px 24px -6px rgba(20,71,230,0.4)" }}
+                                    className="w-full text-white font-bold text-base md:text-lg py-4 rounded-xl md:rounded-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-6 md:mt-8 active:scale-[0.98] shadow-lg shadow-blue-500/25"
+                                    style={{ background: "linear-gradient(135deg, #1447E6 0%, #2556F5 100%)" }}
                                 >
                                     {isSubmitting ? (
                                         <><Loader2 className="w-5 h-5 md:w-6 md:h-6 animate-spin" /> جاري التحويل للدفع ...</>

@@ -4,15 +4,11 @@ import { format } from "date-fns";
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { date, time, name, email, phone, location } = body;
+        const { date, timeSlot, fullName, phone, amount, currency } = body;
 
-        if (!date || !time || !name || !phone) {
+        if (!date || !timeSlot || !fullName || !phone) {
             return NextResponse.json({ success: false, message: "بيانات غير مكتملة" }, { status: 400 });
         }
-
-        // Amount based on location (Egyptian or Foreign)
-        let amount = location === "eg" ? 2500 : 7500;
-        let currency = "EGP";
 
         // EasyKash Direct Payment API URL
         const EASYKASH_URL = "https://back.easykash.net/api/directpayv1/pay";
@@ -21,11 +17,11 @@ export async function POST(request: Request) {
         // Construct the EasyKash payload
         const payload = {
             amount: amount,
-            currency: currency,
+            currency: currency || "EGP",
             paymentOptions: [2, 3, 4, 5, 6], // Adjust based on supported EasyKash options
             cashExpiry: 3,
-            name: name,
-            email: email || "patient@example.com",
+            name: fullName,
+            email: "patient@example.com",
             mobile: phone,
             redirectUrl: `https://${request.headers.get("host") || "drwaelbanna.com"}/`,
             customerReference: `BOOK_${Date.now()}`
@@ -44,8 +40,8 @@ export async function POST(request: Request) {
         const data = await response.json();
         console.log("EasyKash Pay API Response:", data);
 
-        if (data.url || data.payment_url || (data.data && data.data.url)) {
-            const redirectUrl = data.url || data.payment_url || data.data.url;
+        if (data.redirectUrl || data.url || data.payment_url || (data.data && data.data.url)) {
+            const redirectUrl = data.redirectUrl || data.url || data.payment_url || data.data.url;
             return NextResponse.json({ success: true, redirect_url: redirectUrl });
         } else {
             console.error("EasyKash Error details:", data);
