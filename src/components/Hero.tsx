@@ -66,12 +66,10 @@ export default function Hero() {
                         </div>
 
                         {/* Mobile Image (Displays under badge, above headline) */}
-                        <div className="block lg:hidden relative w-64 mx-auto mb-8">
-                            <div className="absolute -inset-3 rounded-[2.2rem] pointer-events-none"
-                                style={{ background: "linear-gradient(135deg, rgba(20,71,230,0.15), rgba(201,151,31,0.15))", padding: "3px" }} />
-                            <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl">
+                        <div className="block lg:hidden relative w-64 md:w-72 mx-auto mb-8 cursor-pointer">
+                            <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden group" style={{ boxShadow: "0 20px 40px -10px rgba(8,15,40,0.15)" }}>
                                 <Image src="/doctor.jpg" alt="د. وائل البنا" fill quality={100} sizes="(max-width: 1024px) 280px, 420px"
-                                    className="object-cover object-top scale-[1.12] origin-top" priority />
+                                    className="object-cover object-top scale-[1.12] origin-top transition-transform duration-1000 group-hover:scale-[1.18]" priority />
                             </div>
                         </div>
 
