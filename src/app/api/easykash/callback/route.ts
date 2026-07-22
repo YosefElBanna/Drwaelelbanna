@@ -31,7 +31,7 @@ export async function POST(request: Request) {
                 const { error: updateError } = await supabase
                     .from("appointments")
                     .update({ payment_status: "paid" })
-                    .eq("payment_reference", ref);
+                    .eq("stripe_session_id", ref);
 
                 if (updateError) {
                     console.error("DB update error:", updateError);

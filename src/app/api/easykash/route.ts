@@ -19,13 +19,10 @@ export async function POST(request: Request) {
                 date,
                 time_slot: timeSlot,
                 full_name: fullName,
-                phone,
-                type: "online",
-                country_code: countryCode || "EG",
-                amount,
-                currency: currency || "EGP",
+                phone_number: phone,
+                booking_type: "online",
                 payment_status: "unpaid",
-                payment_reference: customerReference,
+                stripe_session_id: customerReference,
             });
 
         if (dbError) {
@@ -70,7 +67,7 @@ export async function POST(request: Request) {
             await supabase
                 .from("appointments")
                 .delete()
-                .eq("payment_reference", customerReference);
+                .eq("stripe_session_id", customerReference);
 
             console.error("EasyKash Error details:", data);
             return NextResponse.json({ success: false, message: "فشل في إنشاء رابط الدفع" }, { status: 500 });
