@@ -10,13 +10,13 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "د. وائل البنا - عيادة الغدد الصماء والسكر",
-  description: "الموقع الرسمي لعيادة الدكتور وائل البنا، استشاري الغدد الصماء والسكر. حجز المواعيد والاستشارات الطبية.",
+  title: "استشاري غدد صماء وسكر أونلاين | د. وائل البنا - استشارة أونلاين للخليج والوطن العربي",
+  description: "استشارة أونلاين عبر Zoom مع د. وائل البنا، استشاري الغدد الصماء والسكر بخبرة أكثر من 20 سنة. متابعة السكر، الغدة الدرقية، واضطرابات الهرمونات من أي مكان في الخليج.",
   openGraph: {
-    title: "د. وائل البنا - عيادة الغدد الصماء والسكر",
-    description: "استشارة طبية عبر الإنترنت. تشخيص دقيق ومتابعة للسيطرة على السكر والغدد.",
-    url: "https://dr-wael.vercel.app", 
-    siteName: "عيادة د. وائل البنا",
+    title: "استشاري غدد صماء وسكر أونلاين | د. وائل البنا",
+    description: "استشارة أونلاين عبر Zoom مع د. وائل البنا، استشاري الغدد الصماء والسكر بخبرة أكثر من 20 سنة. متابعة السكر، الغدة الدرقية، واضطرابات الهرمونات من أي مكان في الخليج.",
+    url: "https://dr-waelbanna.vercel.app", 
+    siteName: "عيادة د. وائل البنا أونلاين",
     images: [
       {
         url: "/doctor.jpg", 
@@ -29,6 +29,27 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "name": "د. وائل البنا",
+  "medicalSpecialty": "Endocrine",
+  "description": "استشاري غدد صماء وسكر بخبرة أكثر من 20 سنة. تقديم استشارات أونلاين ومتابعة لمرضى الخليج والوطن العربي.",
+  "image": "https://dr-waelbanna.vercel.app/doctor.jpg",
+  "url": "https://dr-waelbanna.vercel.app",
+  "telephone": "+201000000000", // سيتم استخدام رقم الواتساب لو موجود، هنا كقيمة افتراضية
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Online",
+    "addressCountry": "EG"
+  },
+  "isAcceptingNewPatients": true,
+  "availableService": {
+    "@type": "MedicalTest",
+    "name": "استشارة طبية أونلاين عبر Zoom"
+  }
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,6 +57,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" className="scroll-smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${cairo.variable} antialiased`}>
         <Navbar />
         {children}

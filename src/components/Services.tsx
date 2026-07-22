@@ -2,39 +2,39 @@ import { Stethoscope, Activity, Heart, Droplets, FlaskConical, Salad } from "luc
 
 const services = [
     {
-        icon: <Activity className="w-6 h-6" style={{ color: "#1447E6" }} />,
-        title: "السيطرة الشاملة على مرض السكر",
-        desc: "ننهي حيرتك مع تذبذب قراءات السكر. نضع خطة علاجية صارمة تحميك من مضاعفات الأعصاب، لتعيش حياتك بأمان وبدون حرمان قاسي.",
+        icon: <Activity className="w-6 h-6 lg:w-8 lg:h-8" style={{ color: "#1447E6" }} />,
+        title: "السيطرة الكاملة على السكر (النوع الأول والثاني)",
+        desc: "خطة دقيقة تنهي تذبذب القراءات وتحميك من مضاعفات الأعصاب والعين والكلى على المدى البعيد.",
         accentBg: "rgba(20,71,230,0.06)",
     },
     {
-        icon: <Salad className="w-6 h-6" style={{ color: "#1447E6" }} />,
-        title: "كسر ثبات الوزن ومقاومة الإنسولين",
-        desc: "السمنة ليست مجرد أكل زائد. نكتشف الخلل الهرموني المسبب لضعف الحرق ونعالجه طبياً لتنزل في الوزن بصحة وبدون يأس.",
+        icon: <Stethoscope className="w-6 h-6 lg:w-8 lg:h-8" style={{ color: "#1447E6" }} />,
+        title: "متابعة الحالات المزمنة والمعقدة",
+        desc: "سنين من تذبذب السكر أو علاج لم يفلح من قبل؟ نراجع تاريخك الطبي بالتفصيل ونصل لخطة تناسب حالتك بالذات.",
         accentBg: "rgba(20,71,230,0.06)",
     },
     {
-        icon: <Stethoscope className="w-6 h-6" style={{ color: "#1447E6" }} />,
-        title: "فك شفرة الأمراض الباطنية المعقدة",
-        desc: "هل تعاني من آلام وتعب بلا سبب واضح؟ نغوص في أدق تفاصيل تاريخك الطبي لاكتشاف السبب الجذري الذي حيّر الآخرين.",
+        icon: <Droplets className="w-6 h-6 lg:w-8 lg:h-8" style={{ color: "#1447E6" }} />,
+        title: "علاج اضطرابات الغدة الدرقية",
+        desc: "خمول أو فرط نشاط الغدة الدرقية يسرق طاقتك بصمت. نضبط الهرمونات بدقة لتعود لحيويتك.",
         accentBg: "rgba(20,71,230,0.06)",
     },
     {
-        icon: <Heart className="w-6 h-6" style={{ color: "#1447E6" }} />,
-        title: "حماية القلب من \"القاتل الصامت\"",
-        desc: "لا نكتفي بوصف دواء لضغط الدم، بل نصمم بروتوكولاً يمنع التذبذبات الخطيرة، ليضمن لك نوماً هادئاً وقلباً ينبض بالأمان.",
+        icon: <FlaskConical className="w-6 h-6 lg:w-8 lg:h-8" style={{ color: "#1447E6" }} />,
+        title: "إعادة التوازن الهرموني العام",
+        desc: "اضطراب الهرمونات يقلب حياتك. نشخص السبب الجذري بدقة ونعيد التوازن لجسمك بالكامل.",
         accentBg: "rgba(20,71,230,0.06)",
     },
     {
-        icon: <Droplets className="w-6 h-6" style={{ color: "#1447E6" }} />,
-        title: "استعادة نشاطك بعلاج الغدة الدرقية",
-        desc: "خمول الغدة يسرق طاقتك بصمت. نضبط هرموناتك بدقة متناهية لتعود لك حيويتك، وتتخلص من التعب المستمر والوزن الزائد.",
+        icon: <Salad className="w-6 h-6 lg:w-8 lg:h-8" style={{ color: "#1447E6" }} />,
+        title: "كسر ثبات الوزن المرتبط بالهرمونات",
+        desc: "ثبات الوزن غالبًا سببه هرموني مثل مقاومة الإنسولين، مش بس أكل زيادة. نكشف السبب ونعالجه طبيًا بدون رجيم قاسٍ.",
         accentBg: "rgba(20,71,230,0.06)",
     },
     {
-        icon: <FlaskConical className="w-6 h-6" style={{ color: "#1447E6" }} />,
-        title: "إعادة التوازن الهرموني للجسم",
-        desc: "اضطراب الهرمونات يقلب حياتك رأساً على عقب. نشخص ونعالج الخلل الهرموني بدقة شديدة لنعيد لجسمك استقراره وتسترد صحتك ونشاطك الطبيعي.",
+        icon: <Heart className="w-6 h-6 lg:w-8 lg:h-8" style={{ color: "#1447E6" }} />,
+        title: "حماية القلب من مضاعفات السكر الصامتة",
+        desc: "متابعة دورية لضغط الدم والقلب تمنع التذبذبات الخطيرة، كجزء من رعاية شاملة لمرضى السكر.",
         accentBg: "rgba(20,71,230,0.06)",
     },
 ];
@@ -49,41 +49,25 @@ export default function Services() {
                         خدمات الغدد الصماء والسكر
                     </h2>
                     <div className="w-16 h-1 mx-auto rounded-full mb-4" style={{ background: "#1447E6" }} />
-                    <p className="text-sm md:text-base max-w-xl mx-auto" style={{ color: "#5A6A88" }}>
-                        جميع الخدمات متاحة عبر استشارة أونلاين من أي مكان
+                    <p className="text-sm md:text-base max-w-xl mx-auto font-medium" style={{ color: "#5A6A88" }}>
+                        متابعتك أونلاين مع نفس الدكتور في كل مرة - ودراسات حديثة تؤكد أن المتابعة المنتظمة تخفض نسبة السكر التراكمي فعليًا.
                     </p>
                 </div>
 
-                {/* Mobile: stacked list */}
-                <div className="md:hidden space-y-3">
+                {/* Grid layout (Responsive for Mobile, Tablet, Desktop) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
                     {services.map((srv, idx) => (
-                        <div key={idx} className="flex items-start gap-4 p-4 rounded-2xl transition-all"
-                            style={{ background: "#FFFFFF", border: "1px solid #F1F5F9", boxShadow: "0 2px 8px rgba(8,15,40,0.02)" }}>
+                        <div key={idx} className="flex flex-row md:flex-col items-start md:p-7 p-4 rounded-2xl md:rounded-3xl transition-all duration-300 hover:shadow-lg md:hover:-translate-y-1 bg-white border border-slate-100 shadow-sm md:shadow-[0_4px_16px_rgba(8,15,40,0.03)]">
                             {/* Icon */}
-                            <div className="w-12 h-12 flex-shrink-0 rounded-xl flex items-center justify-center"
+                            <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0 rounded-xl md:rounded-2xl flex items-center justify-center ml-4 md:ml-0 md:mb-5 transition-transform duration-300 md:group-hover:scale-110"
                                 style={{ background: srv.accentBg }}>
                                 {srv.icon}
                             </div>
                             {/* Text */}
                             <div className="flex-1 min-w-0 text-right">
-                                <h3 className="text-sm font-bold mb-1 leading-snug" style={{ color: "#080F28" }}>{srv.title}</h3>
-                                <p className="text-xs leading-relaxed" style={{ color: "#5A6A88" }}>{srv.desc}</p>
+                                <h3 className="text-sm md:text-lg font-bold mb-1 md:mb-2 leading-snug" style={{ color: "#080F28" }}>{srv.title}</h3>
+                                <p className="text-xs md:text-sm leading-relaxed" style={{ color: "#5A6A88" }}>{srv.desc}</p>
                             </div>
-                        </div>
-                    ))}
-                </div>
-
-                {/* Desktop: 3-column grid */}
-                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {services.map((srv, idx) => (
-                        <div key={idx} className="p-7 rounded-3xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                            style={{ background: "#FFFFFF", border: "1px solid #F1F5F9", boxShadow: "0 4px 16px rgba(8,15,40,0.03)" }}>
-                            <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
-                                style={{ background: srv.accentBg }}>
-                                {srv.icon}
-                            </div>
-                            <h3 className="text-lg font-bold mb-2 leading-snug" style={{ color: "#080F28" }}>{srv.title}</h3>
-                            <p className="text-sm leading-relaxed" style={{ color: "#5A6A88" }}>{srv.desc}</p>
                         </div>
                     ))}
                 </div>

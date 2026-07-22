@@ -186,7 +186,7 @@ export default function Booking() {
             // Save info to restore after redirect
             localStorage.setItem("bookingInfo", JSON.stringify(payload));
 
-            const res = await fetch("/api/paytabs", {
+            const res = await fetch("/api/easykash", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
@@ -263,8 +263,11 @@ export default function Booking() {
                         <p className="text-emerald-700 text-sm md:text-base mb-4">
                             تم تأكيد الموعد يوم {format(parseISO(date), 'EEEE d MMMM', { locale: ar })} الساعة {formatTimeSlot(selectedSlot)}.
                         </p>
-                        <p className="text-emerald-700 text-sm md:text-base mb-6 md:mb-8 font-medium">
+                        <p className="text-emerald-700 text-sm md:text-base mb-2 font-medium">
                             سنتواصل معك عبر واتساب قريباً لتأكيد التفاصيل.
+                        </p>
+                        <p className="text-emerald-700 text-sm md:text-base mb-6 md:mb-8 font-bold">
+                            سيتم إرسال رابط الاستشارة على واتساب قبل الموعد بوقت كافٍ.
                         </p>
                         <button
                             onClick={resetBooking}
@@ -301,7 +304,14 @@ export default function Booking() {
 
                             {/* Date Selection */}
                             <div>
-                                <label className="block text-xs md:text-sm font-bold mb-2 md:mb-3" style={{ color: "#080F28" }}>١. اختر اليوم المناسب</label>
+                                <div className="flex flex-col mb-2 md:mb-3">
+                                    <label className="text-xs md:text-sm font-bold" style={{ color: "#080F28" }}>١. اختر اليوم المناسب</label>
+                                    {allowedDays.length === 1 && allowedDays[0] === 5 && (
+                                        <span className="text-xs text-[#1447E6] font-semibold mt-1">
+                                            (الاستشارات الأونلاين متاحة كل يوم جمعة)
+                                        </span>
+                                    )}
+                                </div>
                                 <div className="relative">
                                     {!settingsLoaded ? (
                                         <div className="flex bg-slate-50 p-6 rounded-xl md:rounded-2xl border border-slate-200 justify-center items-center">
