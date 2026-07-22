@@ -281,17 +281,11 @@ export default function Booking() {
                     <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden border border-slate-100">
                         {/* Header */}
                         <div className="sticky top-0 z-20 text-white p-4 md:p-6 shadow-sm border-b border-white/10" style={{ background: "linear-gradient(135deg, #1447E6 0%, #2556F5 100%)" }}>
-                            <div className="flex items-center justify-between gap-4">
-                                <div className="text-right bg-white/10 px-4 py-2.5 rounded-xl backdrop-blur-sm border border-white/20 shadow-inner flex-1 max-w-[200px]">
-                                    <p className="text-[10px] md:text-xs text-white/80 mb-0.5">سعر الاستشارة</p>
-                                    <p className="text-base md:text-xl font-extrabold">{currentCountryInfo.price} <span className="text-xs font-normal">{currentCountryInfo.currency}</span></p>
-                                </div>
-                                <div className="text-left">
-                                    <h3 className="text-base md:text-xl font-bold mb-1">استشارة أونلاين</h3>
-                                    <p className="text-white/80 text-[10px] md:text-xs">
-                                        دفع إلكتروني آمن
-                                    </p>
-                                </div>
+                            <div className="text-center">
+                                <h3 className="text-lg md:text-2xl font-bold mb-1">استشارة أونلاين</h3>
+                                <p className="text-white/80 text-xs md:text-sm">
+                                    دفع إلكتروني آمن
+                                </p>
                             </div>
                         </div>
 
