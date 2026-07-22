@@ -54,6 +54,15 @@ export default function Booking() {
         if (typeof window !== "undefined") {
             const params = new URLSearchParams(window.location.search);
             if (params.get("payment") === "success") {
+                const customerReference = localStorage.getItem("customerReference");
+                if (customerReference) {
+                    fetch("/api/confirm-payment", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ customerReference })
+                    }).catch(console.error);
+                    localStorage.removeItem("customerReference");
+                }
                 setSuccess(true);
                 const savedInfo = localStorage.getItem("bookingInfo");
                 if (savedInfo) {
@@ -196,6 +205,9 @@ export default function Booking() {
             if (!res.ok) throw new Error(data.message || data.error || "فشل في إنشاء جلسة الدفع");
 
             if (data.redirect_url) {
+                if (data.customerReference) {
+                    localStorage.setItem("customerReference", data.customerReference);
+                }
                 window.location.href = data.redirect_url;
             } else {
                 throw new Error("لم يتم استلام رابط الدفع");

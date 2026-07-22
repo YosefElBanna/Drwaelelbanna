@@ -61,7 +61,7 @@ export async function POST(request: Request) {
 
         const redirectUrl = data.redirectUrl || data.url || data.payment_url;
         if (redirectUrl) {
-            return NextResponse.json({ success: true, redirect_url: redirectUrl });
+            return NextResponse.json({ success: true, redirect_url: redirectUrl, customerReference });
         } else {
             // Payment link creation failed — delete the unpaid appointment
             await supabase
