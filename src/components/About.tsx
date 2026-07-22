@@ -33,7 +33,7 @@ export default function About() {
                         <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-[2rem] hidden lg:block" style={{ background: "rgba(20,71,230,0.1)" }} />
                         
                         {/* Small Image (Mobile) vs Large Image (Desktop) */}
-                        <div className="relative rounded-2xl lg:rounded-[2rem] overflow-hidden border-[3px] border-white lg:border-none w-32 lg:w-full lg:aspect-[4/5] aspect-[3/4]"
+                        <div className="relative rounded-2xl lg:rounded-[2rem] overflow-hidden border-[3px] border-white lg:border-none w-40 lg:w-full lg:aspect-[4/5] aspect-[3/4]"
                             style={{ boxShadow: "0 12px 32px -8px rgba(8,15,40,0.12)" }}>
                             <Image 
                                 src="/doctor.jpg" 

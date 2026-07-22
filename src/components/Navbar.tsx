@@ -26,7 +26,7 @@ export default function Navbar() {
         const el = document.querySelector(href);
         if (!el) return;
 
-        const navbarHeight = 80;
+        const navbarHeight = 64;
         const targetPosition = el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
         const startPosition = window.pageYOffset;
         const distance = targetPosition - startPosition;
@@ -83,7 +83,7 @@ export default function Navbar() {
                         </div>
                         <div className="text-right flex flex-col justify-center">
                             <p className="text-xs md:text-sm font-extrabold leading-tight" style={{ color: "#080F28" }}>{DOCTOR_NAME}</p>
-                            <p className="text-[9px] md:text-[10px] font-medium" style={{ color: "#6B7A99" }}>{DOCTOR_TITLE}</p>
+                            <p className="text-[10px] md:text-[11px] font-medium" style={{ color: "#6B7A99" }}>{DOCTOR_TITLE}</p>
                         </div>
                     </button>
 

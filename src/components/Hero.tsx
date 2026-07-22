@@ -9,7 +9,7 @@ function smoothScrollTo(targetId: string) {
     const el = document.getElementById(targetId);
     if (!el) return;
 
-    const navbarHeight = 80;
+        const navbarHeight = 64;
     const targetPosition = el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
@@ -109,7 +109,7 @@ export default function Hero() {
                             </a>
                         </div>
                         {/* Risk Reducer */}
-                        <p className="text-center lg:text-right text-[11px] lg:text-sm font-semibold mt-4 text-[#5A6A88]">
+                        <p className="text-center lg:text-right text-xs lg:text-sm font-semibold mt-4 text-[#5A6A88]">
                             متابعة مجانية أسبوعين بعد الكشف - دفع آمن - تأكيد فوري
                         </p>
                     </div>
@@ -118,7 +118,7 @@ export default function Hero() {
                     <div className="flex-shrink-0 relative w-48 lg:w-[420px] mt-8 lg:mt-0">
                         {/* Gold ring / background for image */}
                         <div className="absolute -inset-[3px] lg:-inset-4 rounded-full lg:rounded-[3rem] pointer-events-none"
-                            style={{ background: "linear-gradient(135deg, rgba(20,71,230,0.2), rgba(201,151,31,0.2))", borderRadius: "50%", padding: "3px" }} />
+                            style={{ background: "linear-gradient(135deg, rgba(20,71,230,0.2), rgba(201,151,31,0.2))", padding: "3px" }} />
                         <div className="relative aspect-square lg:aspect-[3/4] rounded-full lg:rounded-[2.5rem] overflow-hidden border-[4px] lg:border-8 border-white group"
                             style={{ boxShadow: "0 20px 40px -10px rgba(8,15,40,0.15)" }}>
                             <Image src="/doctor.jpg" alt="د. وائل البنا" fill quality={100} sizes="(max-width: 1024px) 192px, 420px"

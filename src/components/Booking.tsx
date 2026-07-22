@@ -193,7 +193,7 @@ export default function Booking() {
             });
 
             const data = await res.json();
-            if (!res.ok) throw new Error(data.error || "فشل في إنشاء جلسة الدفع");
+            if (!res.ok) throw new Error(data.message || data.error || "فشل في إنشاء جلسة الدفع");
 
             if (data.redirect_url) {
                 window.location.href = data.redirect_url;
@@ -210,8 +210,9 @@ export default function Booking() {
         const [hours, mins] = slot.split(":");
         let h = parseInt(hours);
         const m = mins;
-        const ampm = "م";
-        h = h > 12 ? h - 12 : h;
+        const ampm = h >= 12 ? "م" : "ص";
+        if (h === 0) h = 12;
+        else if (h > 12) h = h - 12;
         return `${h}:${m} ${ampm}`;
     };
 
@@ -318,7 +319,7 @@ export default function Booking() {
                                             <Loader2 className="w-6 h-6 animate-spin text-[#1447E6]" />
                                         </div>
                                     ) : (
-                                        <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 md:grid md:grid-cols-3 md:gap-4 bg-slate-50/50 p-2 md:p-5 rounded-2xl border border-slate-100 pb-3 md:pb-5" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                                        <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 md:grid md:grid-cols-3 md:gap-4 bg-slate-50/50 p-3 pt-5 md:p-5 md:pt-5 rounded-2xl border border-slate-100 pb-3 md:pb-5" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
 
                                         {upcomingDates.map((d, index) => {
                                             const parsedDate = parseISO(d);

@@ -66,7 +66,7 @@ export default function Services() {
                             {/* Text */}
                             <div className="flex-1 min-w-0 text-right">
                                 <h3 className="text-sm md:text-lg font-bold mb-1 md:mb-2 leading-snug" style={{ color: "#080F28" }}>{srv.title}</h3>
-                                <p className="text-xs md:text-sm leading-relaxed" style={{ color: "#5A6A88" }}>{srv.desc}</p>
+                                <p className="text-[13px] md:text-sm leading-relaxed" style={{ color: "#5A6A88" }}>{srv.desc}</p>
                             </div>
                         </div>
                     ))}

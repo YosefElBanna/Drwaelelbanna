@@ -71,7 +71,7 @@ export default function FAQ() {
                                 <div 
                                     className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}
                                 >
-                                    <div className="p-4 md:p-6 pt-0 pr-16 md:pr-20 text-sm md:text-base text-[#3D4D6B] leading-relaxed font-medium">
+                                    <div className="p-4 md:p-6 pt-0 pr-12 md:pr-20 text-sm md:text-base text-[#3D4D6B] leading-relaxed font-medium">
                                         {faq.answer}
                                     </div>
                                 </div>

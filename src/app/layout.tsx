@@ -37,7 +37,7 @@ const jsonLd = {
   "description": "استشاري غدد صماء وسكر بخبرة أكثر من 20 سنة. تقديم استشارات أونلاين ومتابعة لمرضى الخليج والوطن العربي.",
   "image": "https://dr-waelbanna.vercel.app/doctor.jpg",
   "url": "https://dr-waelbanna.vercel.app",
-  "telephone": "+201000000000", // سيتم استخدام رقم الواتساب لو موجود، هنا كقيمة افتراضية
+  "telephone": "+201032287432", // سيتم استخدام رقم الواتساب لو موجود، هنا كقيمة افتراضية
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Online",

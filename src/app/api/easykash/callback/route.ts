@@ -1,36 +1,49 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
+import { supabase } from "@/lib/supabase";
 
 export async function POST(request: Request) {
     try {
         const bodyText = await request.text();
         const body = JSON.parse(bodyText);
-        console.log("EasyKash Webhook Callback received:", body);
+        console.log("EasyKash Callback received:", body);
 
+        // HMAC verification
         const hmacHeader = request.headers.get("hmac");
-        const SECRET_KEY = process.env.EASYKASH_HMAC_SECRET || "a651ccc3f936465e97408bdf87e8bebf";
-        
-        // Compute HMAC for security
-        const calculatedHmac = crypto.createHmac("sha256", SECRET_KEY).update(bodyText).digest("hex");
-        
-        if (hmacHeader && hmacHeader !== calculatedHmac) {
-            console.error("HMAC verification failed. Received:", hmacHeader, "Expected:", calculatedHmac);
-            // Can return 401 if strict, but logging is fine for testing
-        } else {
-            console.log("HMAC verification successful!");
+        const SECRET_KEY = process.env.EASYKASH_HMAC_SECRET!;
+
+        if (SECRET_KEY && hmacHeader) {
+            const calculatedHmac = crypto
+                .createHmac("sha256", SECRET_KEY)
+                .update(bodyText)
+                .digest("hex");
+
+            if (hmacHeader !== calculatedHmac) {
+                console.error("HMAC verification failed.");
+                return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+            }
         }
 
-        // If the payment is successful
+        // Update appointment status in database
+        const ref = body.customerReference || body.customer_reference;
         if (body.status === "success" || body.payment_status === "paid") {
-            console.log("Payment successful for reference:", body.customerReference);
-            // Add any database/SMS updates here
+            if (ref) {
+                const { error: updateError } = await supabase
+                    .from("appointments")
+                    .update({ payment_status: "paid" })
+                    .eq("payment_reference", ref);
+
+                if (updateError) {
+                    console.error("DB update error:", updateError);
+                } else {
+                    console.log("Appointment marked as paid:", ref);
+                }
+            }
         } else {
-            console.log("Payment failed or pending:", body);
+            console.log("Payment not successful:", body.status);
         }
 
-        // Return 200 OK so EasyKash knows we received it
         return NextResponse.json({ received: true, status: "success" });
-
     } catch (error) {
         console.error("Webhook Error:", error);
         return NextResponse.json({ received: false, error: "Webhook Error" }, { status: 500 });
