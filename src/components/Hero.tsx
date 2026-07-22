@@ -66,10 +66,25 @@ export default function Hero() {
                         </div>
 
                         {/* Mobile Image (Displays under badge, above headline) */}
-                        <div className="block lg:hidden relative w-64 md:w-72 mx-auto mb-8 cursor-pointer">
-                            <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden group" style={{ boxShadow: "0 20px 40px -10px rgba(8,15,40,0.15)" }}>
+                        <div className="block lg:hidden relative w-64 md:w-72 mx-auto mb-10 mt-2 cursor-pointer group">
+                            {/* Colorful Aura Glow Behind */}
+                            <div className="absolute -inset-1 bg-gradient-to-tr from-[#1447E6]/40 via-[#C9971F]/20 to-[#1447E6]/40 rounded-[2.5rem] blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-1000" />
+                            
+                            {/* Main Image Container */}
+                            <div className="relative aspect-[4/5] rounded-[2rem] rounded-tr-[4rem] rounded-bl-[4rem] overflow-hidden border-2 border-white/60 bg-white shadow-2xl z-10">
                                 <Image src="/doctor.jpg" alt="د. وائل البنا" fill quality={100} sizes="(max-width: 1024px) 280px, 420px"
                                     className="object-cover object-top scale-[1.12] origin-top transition-transform duration-1000 group-hover:scale-[1.18]" priority />
+                            </div>
+
+                            {/* Floating Glass Badge */}
+                            <div className="absolute -bottom-4 -left-2 z-20 bg-white/90 backdrop-blur-md border border-white shadow-[0_8px_16px_rgba(8,15,40,0.1)] py-2 px-3.5 rounded-2xl flex items-center gap-2.5 transition-transform duration-700 group-hover:-translate-y-1.5 group-hover:scale-105">
+                                <div className="bg-[#EEF3FF] p-1.5 rounded-xl">
+                                    <Star className="w-4 h-4 text-[#1447E6]" fill="#1447E6" />
+                                </div>
+                                <div className="flex flex-col text-right">
+                                    <span className="text-[11px] font-extrabold text-[#080F28] leading-tight">+١٠,٠٠٠ حالة</span>
+                                    <span className="text-[9px] font-semibold text-[#5A6A88]">تم علاجها بنجاح</span>
+                                </div>
                             </div>
                         </div>
 
