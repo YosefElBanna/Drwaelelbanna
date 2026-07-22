@@ -159,8 +159,8 @@ export default function Booking() {
             return;
         }
 
-        if (fullName.trim().split(/\s+/).length < 3) {
-            setError("يرجى كتابة الاسم الثلاثي");
+        if (fullName.trim().split(/\s+/).length < 2) {
+            setError("يرجى كتابة الاسم الثنائي أو الثلاثي");
             return;
         }
 
