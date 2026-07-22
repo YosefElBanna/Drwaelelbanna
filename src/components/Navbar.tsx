@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, CalendarDays } from "lucide-react";
+import { Menu, X, CalendarDays, Stethoscope } from "lucide-react";
 import { DOCTOR_NAME, DOCTOR_TITLE } from "@/lib/constants";
 
 const NAV_LINKS = [
@@ -73,17 +73,17 @@ export default function Navbar() {
                     <button
                         type="button"
                         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                        className="flex items-center gap-2 group"
+                        className="flex items-center gap-2 md:gap-3 group"
                     >
                         <div
-                            className="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center text-white font-black text-sm md:text-base transition-transform duration-300 group-hover:scale-105"
+                            className="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-105 shadow-md shadow-blue-500/20"
                             style={{ background: "linear-gradient(135deg, #1447E6, #2556F5)" }}
                         >
-                            و.ب
+                            <Stethoscope className="w-5 h-5" />
                         </div>
-                        <div className="hidden sm:block text-right">
-                            <p className="text-sm font-bold leading-tight" style={{ color: "#080F28" }}>{DOCTOR_NAME}</p>
-                            <p className="text-[10px] font-medium" style={{ color: "#6B7A99" }}>{DOCTOR_TITLE}</p>
+                        <div className="text-right flex flex-col justify-center">
+                            <p className="text-xs md:text-sm font-extrabold leading-tight" style={{ color: "#080F28" }}>{DOCTOR_NAME}</p>
+                            <p className="text-[9px] md:text-[10px] font-medium" style={{ color: "#6B7A99" }}>{DOCTOR_TITLE}</p>
                         </div>
                     </button>
 
