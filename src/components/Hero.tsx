@@ -115,12 +115,13 @@ export default function Hero() {
                     </div>
 
                     {/* Image */}
-                    <div className="flex-shrink-0 relative w-64 md:w-80 lg:w-[420px] lg:mt-0">
-                        {/* Gold ring / background for image */}
-                        <div className="absolute -inset-[3px] lg:-inset-4 rounded-[2.2rem] lg:rounded-[3rem] pointer-events-none"
+                    <div className="flex-shrink-0 relative w-64 md:w-80 lg:w-[420px] lg:mt-0 mb-4 lg:mb-0">
+                        {/* Gold ring / background for image - Desktop only */}
+                        <div className="absolute lg:-inset-4 lg:rounded-[3rem] pointer-events-none hidden lg:block"
                             style={{ background: "linear-gradient(135deg, rgba(20,71,230,0.2), rgba(201,151,31,0.2))", padding: "3px" }} />
-                        <div className="relative aspect-[4/5] lg:aspect-[3/4] rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden border-[4px] lg:border-8 border-white group"
-                            style={{ boxShadow: "0 20px 40px -10px rgba(8,15,40,0.15)" }}>
+                        
+                        {/* Image Container - Clean on mobile, framed on desktop */}
+                        <div className="relative aspect-[4/5] lg:aspect-[3/4] rounded-2xl lg:rounded-[2.5rem] overflow-hidden border-none lg:border-[8px] lg:border-white group shadow-2xl lg:shadow-[0_20px_40px_-10px_rgba(8,15,40,0.15)]">
                             <Image src="/doctor.jpg" alt="د. وائل البنا" fill quality={100} sizes="(max-width: 1024px) 280px, 420px"
                                 className="object-cover object-top scale-[1.12] origin-top transition-transform duration-1000 group-hover:scale-[1.18]" priority />
                         </div>
