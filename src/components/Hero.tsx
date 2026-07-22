@@ -82,7 +82,7 @@ export default function Hero() {
                                     <Star className="w-4 h-4 text-[#1447E6]" fill="#1447E6" />
                                 </div>
                                 <div className="flex flex-col text-right">
-                                    <span className="text-[11px] font-extrabold text-[#080F28] leading-tight">+١٠,٠٠٠ حالة</span>
+                                    <span className="text-[11px] font-extrabold text-[#080F28] leading-tight">+٥,٠٠٠ حالة</span>
                                     <span className="text-[9px] font-semibold text-[#5A6A88]">تم علاجها بنجاح</span>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@ export default function Hero() {
                         {/* Trust Badges */}
                         <div className="flex flex-wrap justify-center lg:justify-start gap-2 lg:gap-3 mb-8">
                             <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-bold bg-white text-[#3D4D6B] border border-slate-100 shadow-sm">
-                                <Star className="w-4 h-4 text-[#C9971F]" /> +10,000 حالة من مصر والخليج
+                                <Star className="w-4 h-4 text-[#C9971F]" /> +5,000 حالة من مصر والخليج
                             </span>
                             <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-bold bg-white text-[#3D4D6B] border border-slate-100 shadow-sm">
                                 <Activity className="w-4 h-4 text-[#1447E6]" /> +20 سنة خبرة
