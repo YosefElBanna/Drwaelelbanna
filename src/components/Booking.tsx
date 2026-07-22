@@ -405,14 +405,14 @@ export default function Booking() {
                             <div className={`transition-all duration-500 ease-in-out origin-top ${selectedSlot ? 'opacity-100 scale-y-100 h-auto' : 'opacity-0 scale-y-0 h-0 overflow-hidden'}`}>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 pt-4 md:pt-6 border-t border-slate-100">
                                     <div>
-                                        <label className="block text-xs md:text-sm font-bold mb-1.5 md:mb-2" style={{ color: "#080F28" }}>٣. الاسم الثلاثي</label>
+                                        <label className="block text-xs md:text-sm font-bold mb-1.5 md:mb-2" style={{ color: "#080F28" }}>٣. الاسم الثنائي أو الثلاثي</label>
                                         <div className="relative">
                                             <User className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5" style={{ color: "#5A6A88" }} />
                                             <input
                                                 type="text"
                                                 value={fullName}
                                                 onChange={(e) => setFullName(e.target.value)}
-                                                placeholder="أحمد محمد محمود"
+                                                placeholder="أحمد محمد"
                                                 className="w-full pl-4 pr-10 md:pr-11 py-3 border border-slate-200 rounded-xl outline-none transition-all text-sm md:text-base focus:border-[#1447E6] focus:ring-1 focus:ring-[#1447E6]"
                                                 style={{ color: "#080F28" }}
                                                 required
