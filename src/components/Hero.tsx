@@ -82,7 +82,7 @@ export default function Hero() {
                                     <Star className="w-4 h-4 text-[#1447E6]" fill="#1447E6" />
                                 </div>
                                 <div className="flex flex-col text-right">
-                                    <span className="text-[11px] font-extrabold text-[#080F28] leading-tight">+٥,٠٠٠ حالة</span>
+                                    <span className="text-[11px] font-extrabold text-[#080F28] leading-tight">+5,000 حالة</span>
                                     <span className="text-[9px] font-semibold text-[#5A6A88]">تم علاجها بنجاح</span>
                                 </div>
                             </div>
