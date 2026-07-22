@@ -65,6 +65,16 @@ export default function Hero() {
                             </div>
                         </div>
 
+                        {/* Mobile Image (Displays under badge, above headline) */}
+                        <div className="block lg:hidden relative w-64 mx-auto mb-8">
+                            <div className="absolute -inset-3 rounded-[2.2rem] pointer-events-none"
+                                style={{ background: "linear-gradient(135deg, rgba(20,71,230,0.15), rgba(201,151,31,0.15))", padding: "3px" }} />
+                            <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl">
+                                <Image src="/doctor.jpg" alt="د. وائل البنا" fill quality={100} sizes="(max-width: 1024px) 280px, 420px"
+                                    className="object-cover object-top scale-[1.12] origin-top" priority />
+                            </div>
+                        </div>
+
                         <h1 className="text-3xl lg:text-5xl font-extrabold mb-4 lg:mb-6 leading-tight" style={{ color: "#080F28" }}>
                             السكر والغدة الدرقية تحت السيطرة...
                             <br className="hidden lg:block" />
@@ -114,12 +124,12 @@ export default function Hero() {
                         </p>
                     </div>
 
-                    {/* Image */}
-                    <div className="flex-shrink-0 relative w-48 lg:w-[420px] mt-8 lg:mt-0">
+                    {/* Desktop Image */}
+                    <div className="hidden lg:block flex-shrink-0 relative w-[420px]">
                         {/* Gold ring / background for image */}
-                        <div className="absolute -inset-[3px] lg:-inset-4 rounded-full lg:rounded-[3rem] pointer-events-none"
+                        <div className="absolute -inset-4 rounded-[3rem] pointer-events-none"
                             style={{ background: "linear-gradient(135deg, rgba(20,71,230,0.2), rgba(201,151,31,0.2))", padding: "3px" }} />
-                        <div className="relative aspect-square lg:aspect-[3/4] rounded-full lg:rounded-[2.5rem] overflow-hidden border-[4px] lg:border-8 border-white group"
+                        <div className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden border-8 border-white group"
                             style={{ boxShadow: "0 20px 40px -10px rgba(8,15,40,0.15)" }}>
                             <Image src="/doctor.jpg" alt="د. وائل البنا" fill quality={100} sizes="(max-width: 1024px) 192px, 420px"
                                 className="object-cover object-top scale-[1.12] origin-top transition-transform duration-1000 group-hover:scale-[1.18]" priority />
