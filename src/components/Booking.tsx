@@ -447,7 +447,7 @@ export default function Booking() {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting || !date || !selectedSlot}
-                                    className="w-full text-white font-bold text-base md:text-lg py-4 rounded-xl md:rounded-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mt-6 md:mt-8 active:scale-[0.98] shadow-lg shadow-blue-500/25"
+                                    className="w-full text-white font-extrabold text-lg md:text-xl py-5 rounded-xl md:rounded-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 mt-6 md:mt-8 active:scale-[0.98] shadow-lg shadow-blue-500/25"
                                     style={{ background: "linear-gradient(135deg, #1447E6 0%, #2556F5 100%)" }}
                                 >
                                     {isSubmitting ? (

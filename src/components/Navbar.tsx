@@ -6,7 +6,6 @@ import { DOCTOR_NAME, DOCTOR_TITLE } from "@/lib/constants";
 
 const NAV_LINKS = [
     { label: "عن الدكتور", href: "#about" },
-    { label: "الخدمات", href: "#services" },
     { label: "الحجز", href: "#booking" },
     { label: "تواصل معنا", href: "#contact" },
 ];
@@ -103,13 +102,13 @@ export default function Navbar() {
                         <button
                             type="button"
                             onClick={() => handleNavClick("#booking")}
-                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white transition-all duration-200 hover:-translate-y-0.5 mr-2"
+                            className="flex items-center gap-2.5 px-6 py-3 rounded-xl text-base font-extrabold text-white transition-all duration-200 hover:-translate-y-0.5 mr-2"
                             style={{
                                 background: "linear-gradient(135deg, #1447E6 0%, #2556F5 100%)",
-                                boxShadow: "0 4px 16px -4px rgba(20,71,230,0.35)",
+                                boxShadow: "0 6px 20px -4px rgba(20,71,230,0.4)",
                             }}
                         >
-                            <CalendarDays className="w-4 h-4" />
+                            <CalendarDays className="w-5 h-5" />
                             احجز الآن
                         </button>
                     </nav>
@@ -157,13 +156,13 @@ export default function Navbar() {
                     <button
                         type="button"
                         onClick={() => handleNavClick("#booking")}
-                        className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold text-white mt-2 transition-all active:scale-[0.97]"
+                        className="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl text-base font-extrabold text-white mt-2 transition-all active:scale-[0.97]"
                         style={{
                             background: "linear-gradient(135deg, #1447E6 0%, #2556F5 100%)",
-                            boxShadow: "0 4px 16px -4px rgba(20,71,230,0.35)",
+                            boxShadow: "0 6px 20px -4px rgba(20,71,230,0.4)",
                         }}
                     >
-                        <CalendarDays className="w-4 h-4" />
+                        <CalendarDays className="w-5 h-5" />
                         احجز الآن
                     </button>
                 </div>

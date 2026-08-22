@@ -2,154 +2,134 @@
 
 import Image from "next/image";
 import { useCallback } from "react";
-import { CalendarDays, MessageCircle, Star, ShieldCheck, Activity } from "lucide-react";
+import { CalendarDays, MessageCircle, Star, ShieldCheck, ClipboardList, Award, Globe, Lock, CheckCircle2 } from "lucide-react";
 import { WHATSAPP_URL } from "@/lib/constants";
-
-function smoothScrollTo(targetId: string) {
-    const el = document.getElementById(targetId);
-    if (!el) return;
-
-        const navbarHeight = 64;
-    const targetPosition = el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-    const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    const duration = 1000;
-    let startTime: number | null = null;
-
-    function easeInOutCubic(t: number): number {
-        return t < 0.5
-            ? 4 * t * t * t
-            : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    }
-
-    function step(currentTime: number) {
-        if (startTime === null) startTime = currentTime;
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = easeInOutCubic(progress);
-
-        window.scrollTo(0, startPosition + distance * eased);
-
-        if (progress < 1) {
-            requestAnimationFrame(step);
-        }
-    }
-
-    requestAnimationFrame(step);
-}
 
 export default function Hero() {
     const handleBookingClick = useCallback(() => {
-        smoothScrollTo("booking");
+        const el = document.getElementById("booking");
+        if (el) {
+            const navbarHeight = 64;
+            const targetPosition = el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+            window.scrollTo({ top: targetPosition, behavior: "smooth" });
+        }
     }, []);
 
     return (
-        <section className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, #F4F7FF 0%, #EEF3FF 100%)" }}>
-            {/* Decorative glows */}
-            <div className="absolute top-0 right-0 lg:left-0 w-64 h-64 lg:w-[600px] lg:h-[600px] rounded-full pointer-events-none opacity-40" 
-                 style={{ background: "radial-gradient(circle, rgba(20,71,230,0.12) 0%, transparent 70%)" }} />
-            <div className="absolute bottom-0 left-0 lg:right-0 w-56 h-56 lg:w-96 lg:h-96 rounded-full pointer-events-none opacity-40" 
-                 style={{ background: "radial-gradient(circle, rgba(201,151,31,0.12) 0%, transparent 70%)" }} />
-
-            <div className="container mx-auto px-5 lg:px-6 relative z-10 pt-20 pb-12 lg:pt-24 lg:pb-24">
-                <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16">
-                    
-                    {/* Content */}
-                    <div className="flex-1 text-center lg:text-right w-full">
-                        {/* Availability badge */}
-                        <div className="flex justify-center lg:justify-start mb-6 lg:mb-8">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border"
-                                style={{ background: "rgba(20,71,230,0.08)", borderColor: "rgba(20,71,230,0.15)" }}>
-                                <span className="w-2 h-2 rounded-full animate-pulse block flex-shrink-0" style={{ background: "#1447E6" }} />
-                                <span className="text-xs font-semibold tracking-wide" style={{ color: "#1447E6" }}>متاح للحجز الآن</span>
-                            </div>
+        <section className="relative overflow-hidden pt-20 pb-12 lg:pt-28 lg:pb-24 bg-white">
+            <div className="container mx-auto px-4 md:px-6 max-w-5xl">
+                
+                {/* Top Section: Title & Image (Side by Side) */}
+                <div className="flex flex-row items-center justify-between gap-3 md:gap-12 mb-10 md:mb-16">
+                    {/* Text (Right Side) */}
+                    <div className="flex-1 text-right">
+                        <div className="hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-100 bg-blue-50 mb-4 md:mb-6">
+                            <span className="w-2 h-2 rounded-full animate-pulse bg-[#1447E6]" />
+                            <span className="text-[11px] md:text-xs font-bold text-[#1447E6]">مواعيد متاحة الآن</span>
                         </div>
-
-                        {/* Mobile Image (Displays under badge, above headline) */}
-                        <div className="block lg:hidden relative w-64 md:w-72 mx-auto mb-10 mt-2 cursor-pointer group">
-                            {/* Colorful Aura Glow Behind */}
-                            <div className="absolute -inset-1 bg-gradient-to-tr from-[#1447E6]/40 via-[#C9971F]/20 to-[#1447E6]/40 rounded-[2.5rem] blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-1000" />
-                            
-                            {/* Main Image Container */}
-                            <div className="relative aspect-[4/5] rounded-[2rem] rounded-tr-[4rem] rounded-bl-[4rem] overflow-hidden border-2 border-white/60 bg-white shadow-2xl z-10">
-                                <Image src="/doctor.jpg" alt="د. وائل البنا" fill quality={100} sizes="(max-width: 1024px) 280px, 420px"
-                                    className="object-cover object-top scale-[1.12] origin-top transition-transform duration-1000 group-hover:scale-[1.18]" priority />
-                            </div>
-
-                            {/* Floating Glass Badge */}
-                            <div className="absolute -bottom-4 -left-2 z-20 bg-white/90 backdrop-blur-md border border-white shadow-[0_8px_16px_rgba(8,15,40,0.1)] py-2 px-3.5 rounded-2xl flex items-center gap-2.5 transition-transform duration-700 group-hover:-translate-y-1.5 group-hover:scale-105">
-                                <div className="bg-[#EEF3FF] p-1.5 rounded-xl">
-                                    <Star className="w-4 h-4 text-[#1447E6]" fill="#1447E6" />
-                                </div>
-                                <div className="flex flex-col text-right">
-                                    <span className="text-[11px] font-extrabold text-[#080F28] leading-tight">+5,000 حالة</span>
-                                    <span className="text-[9px] font-semibold text-[#5A6A88]">تم علاجها بنجاح</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h1 className="text-3xl lg:text-5xl font-extrabold mb-4 lg:mb-6 leading-tight" style={{ color: "#080F28" }}>
+                        <h1 className="text-xl sm:text-2xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-[#080F28] mb-2 md:mb-4">
                             السكر والغدة الدرقية تحت السيطرة...
-                            <br className="hidden lg:block" />
-                            <span className="text-[#1447E6] lg:block lg:mt-2">من بيتك، مع استشاري بخبرة +20 سنة</span>
                         </h1>
+                        <p className="text-sm sm:text-base md:text-2xl font-bold text-[#1447E6]">
+                            من بيتك، مع استشاري بخبرة +20 سنة
+                        </p>
+                    </div>
+
+                    {/* Image (Left Side) */}
+                    <div className="w-[45%] md:w-[40%] max-w-[400px] relative flex-shrink-0">
+                        {/* Background Shape */}
+                        <div className="absolute inset-0 bg-[#EEF3FF] rounded-2xl md:rounded-[3rem] -z-10 translate-x-2 translate-y-2 md:translate-x-4 md:translate-y-4" />
                         
-                        <p className="text-sm lg:text-lg font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-3 text-[#3D4D6B]">
-                            آلاف المرضى اعتمدوا على خبرته في السكر والغدة الدرقية. مش وصف دواء سريع، لكن فهم حقيقي لسبب حالتك.
-                        </p>
-                        <p className="text-sm lg:text-lg font-bold leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-6 text-[#080F28]">
-                            وانت في بيتك - تعمل تحاليلك في بلدك، ويراجعها د. وائل معاك أونلاين.
-                        </p>
-
-                        {/* Trust Badges */}
-                        <div className="flex flex-wrap justify-center lg:justify-start gap-2 lg:gap-3 mb-8">
-                            <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-bold bg-white text-[#3D4D6B] border border-slate-100 shadow-sm">
-                                <Star className="w-4 h-4 text-[#C9971F]" /> +5,000 حالة من مصر والخليج
-                            </span>
-                            <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-bold bg-white text-[#3D4D6B] border border-slate-100 shadow-sm">
-                                <Activity className="w-4 h-4 text-[#1447E6]" /> +20 سنة خبرة
-                            </span>
-                            <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-bold bg-white text-[#3D4D6B] border border-slate-100 shadow-sm">
-                                <ShieldCheck className="w-4 h-4 text-[#16A34A]" /> متابعة مجانية أسبوعين بعد الكشف
-                            </span>
+                        <div className="relative aspect-[3/4] rounded-2xl md:rounded-[2rem] overflow-hidden border-2 md:border-4 border-white shadow-sm">
+                            <Image src="/doctor.jpg" alt="د. وائل البنا" fill quality={100} sizes="(max-width: 768px) 150px, 400px"
+                                className="object-cover object-top scale-110" priority />
                         </div>
 
-                        {/* CTAs */}
-                        <div className="space-y-3 lg:space-y-0 lg:flex lg:flex-row lg:gap-4 lg:justify-start">
-                            <button
-                                type="button"
-                                onClick={handleBookingClick}
-                                className="flex items-center justify-center gap-2.5 w-full lg:w-auto lg:px-8 py-4 rounded-2xl font-bold text-[15px] lg:text-lg text-white transition-all hover:opacity-90 active:scale-[0.97] lg:hover:-translate-y-0.5"
-                                style={{ background: "linear-gradient(135deg, #1447E6 0%, #2556F5 100%)", boxShadow: "0 8px 24px -6px rgba(20,71,230,0.4)" }}>
-                                <CalendarDays className="w-5 h-5 flex-shrink-0" />
-                                احجز موعدك الآن
-                            </button>
-                            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
-                                className="flex items-center justify-center gap-2.5 w-full lg:w-auto lg:px-8 py-4 rounded-2xl font-bold text-[15px] lg:text-lg transition-all active:scale-[0.97] lg:hover:-translate-y-0.5"
-                                style={{ color: "#16A34A", background: "#F0FDF4", border: "1px solid #DCFCE7", boxShadow: "0 2px 8px rgba(22,163,74,0.05)" }}>
-                                <MessageCircle className="w-5 h-5 flex-shrink-0" />
-                                تواصل عبر واتساب
-                            </a>
-                        </div>
-                        {/* Risk Reducer */}
-                        <p className="text-center lg:text-right text-xs lg:text-sm font-semibold mt-4 text-[#5A6A88]">
-                            متابعة مجانية أسبوعين بعد الكشف - دفع آمن - تأكيد فوري
-                        </p>
-                    </div>
-
-                    {/* Desktop Image */}
-                    <div className="hidden lg:block flex-shrink-0 relative w-[420px]">
-                        {/* Gold ring / background for image */}
-                        <div className="absolute -inset-4 rounded-[3rem] pointer-events-none"
-                            style={{ background: "linear-gradient(135deg, rgba(20,71,230,0.2), rgba(201,151,31,0.2))", padding: "3px" }} />
-                        <div className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden border-8 border-white group"
-                            style={{ boxShadow: "0 20px 40px -10px rgba(8,15,40,0.15)" }}>
-                            <Image src="/doctor.jpg" alt="د. وائل البنا" fill quality={100} sizes="(max-width: 1024px) 192px, 420px"
-                                className="object-cover object-top scale-[1.12] origin-top transition-transform duration-1000 group-hover:scale-[1.18]" priority />
+                        {/* Floating Badge */}
+                        <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 z-20 bg-white border border-slate-100 shadow-xl py-1.5 px-2 md:py-2 md:px-4 rounded-xl md:rounded-2xl flex items-center gap-1.5 md:gap-3 w-max">
+                            <div className="bg-[#EEF3FF] p-1 md:p-2 rounded-lg md:rounded-xl">
+                                <Star className="w-3 h-3 md:w-5 md:h-5 text-[#1447E6]" fill="#1447E6" />
+                            </div>
+                            <div className="flex flex-col text-right">
+                                <span className="text-[11px] md:text-sm font-extrabold text-[#080F28] leading-tight">+5,000 حالة</span>
+                                <span className="text-[9px] md:text-xs font-bold text-[#5A6A88]">تم متابعتها</span>
+                            </div>
                         </div>
                     </div>
-
                 </div>
+
+                {/* Main Paragraph */}
+                <p className="text-sm md:text-xl font-medium leading-relaxed text-center text-[#3D4D6B] max-w-3xl mx-auto mb-8 md:mb-12">
+                    نهج طبي يبدأ بفهم حالتك وتقييم أسبابها، وليس مجرد وصف علاج سريع.
+                    <br className="hidden md:block" />
+                    خبرة متخصصة في تشخيص ومتابعة أمراض السكري واضطرابات الغدد الصماء، حظيت بثقة آلاف المرضى.
+                </p>
+
+                {/* White Card */}
+                <div className="bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50 p-5 md:p-8 mb-8 max-w-4xl mx-auto">
+                    {/* Top of Card */}
+                    <div className="flex flex-row items-start gap-3 md:gap-6 mb-6 md:mb-8 pb-6 md:pb-8 border-b border-slate-100">
+                        <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-[#EEF3FF] flex items-center justify-center flex-shrink-0 mt-1 md:mt-0">
+                            <ClipboardList className="w-5 h-5 md:w-7 md:h-7 text-[#1447E6]" />
+                        </div>
+                        <p className="text-xs md:text-lg font-bold leading-relaxed text-[#080F28] text-right">
+                            يقوم د. وائل بمراجعة تحاليلك وتقاريرك الطبية، أينما كنت، ومناقشة حالتك معك بشكل مباشر، للوصول إلى تقييم واضح وخطة علاجية مناسبة من خلال <span className="text-[#1447E6]">الاستشارة الطبية أونلاين.</span>
+                        </p>
+                    </div>
+                    
+                    {/* Bottom of Card (Grid) */}
+                    <div className="flex flex-row justify-between items-start gap-1 md:gap-4 divide-x divide-x-reverse divide-slate-100">
+                        <div className="flex flex-col items-center text-center flex-1 px-1">
+                            <Award className="w-6 h-6 md:w-8 md:h-8 text-[#1447E6] mb-2 md:mb-3" />
+                            <span className="text-[10px] md:text-base font-bold text-[#3D4D6B]">خبرة تتجاوز 20 عامًا</span>
+                        </div>
+                        <div className="flex flex-col items-center text-center flex-1 px-1">
+                            <Globe className="w-6 h-6 md:w-8 md:h-8 text-[#1447E6] mb-2 md:mb-3" />
+                            <span className="text-[10px] md:text-base font-bold text-[#3D4D6B]">أكثر من 5,000 حالة من مصر ودول الخليج</span>
+                        </div>
+                        <div className="flex flex-col items-center text-center flex-1 px-1">
+                            <ShieldCheck className="w-6 h-6 md:w-8 md:h-8 text-[#1447E6] mb-2 md:mb-3" />
+                            <span className="text-[10px] md:text-base font-bold text-[#3D4D6B]">متابعة مجانية لمدة أسبوعين بعد الاستشارة</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* CTAs */}
+                <div className="flex flex-col gap-3 md:gap-4 max-w-xl mx-auto mb-8">
+                    <button
+                        type="button"
+                        onClick={handleBookingClick}
+                        className="flex items-center justify-center gap-3 w-full py-4 md:py-5 rounded-2xl font-extrabold text-base md:text-xl text-white transition-all hover:opacity-90 active:scale-[0.98]"
+                        style={{ background: "#0841D6", boxShadow: "0 8px 24px -4px rgba(8,65,214,0.4)" }}>
+                        <CalendarDays className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+                        احجز موعد استشارتك
+                    </button>
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-3 w-full py-4 md:py-5 rounded-2xl font-extrabold text-base md:text-xl transition-all hover:bg-emerald-50 active:scale-[0.98]"
+                        style={{ color: "#16A34A", background: "#F0FDF4", border: "2px solid #DCFCE7" }}>
+                        <MessageCircle className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+                        تواصل معنا عبر واتساب
+                    </a>
+                </div>
+                
+                {/* Risk Reducer Bottom Bar */}
+                <div className="flex flex-row items-center justify-between bg-slate-50 border border-slate-200 rounded-xl md:rounded-2xl py-3 md:py-4 px-2 md:px-6 max-w-4xl mx-auto text-[10px] md:text-sm font-bold text-[#5A6A88]">
+                    <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 text-center md:text-right flex-1">
+                        <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-[#0841D6]" />
+                        <span>متابعة مجانية أسبوعين<br className="md:hidden" /> بعد الاستشارة</span>
+                    </div>
+                    <div className="w-px h-6 md:h-6 bg-slate-200 mx-1 md:mx-2"></div>
+                    <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 text-center md:text-right flex-1 justify-center">
+                        <Lock className="w-4 h-4 md:w-5 md:h-5 text-[#0841D6]" />
+                        <span>دفع آمن</span>
+                    </div>
+                    <div className="w-px h-6 md:h-6 bg-slate-200 mx-1 md:mx-2"></div>
+                    <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 text-center md:text-right flex-1 justify-end">
+                        <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-[#0841D6]" />
+                        <span>تأكيد فوري<br className="md:hidden" /> للحجز</span>
+                    </div>
+                </div>
+
             </div>
         </section>
     );
